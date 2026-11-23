@@ -1,0 +1,271 @@
+@import "tailwindcss";
+
+@theme {
+  --color-chrome-light: #F8FAFC;
+  --color-chrome-mid: #CBD5E1;
+  --color-chrome-dark: #64748B;
+  --color-gunmetal: #1B2028;
+  --color-gunmetal-deep: #0E1217;
+  --color-ice-blue: #7DD3FC;
+  --color-ice-bright: #BAE6FD;
+  --color-crt-black: #06090E;
+
+  --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+  --font-pixel: "Silkscreen", monospace;
+  --font-lcd: "VT323", monospace;
+}
+
+@layer base {
+  html,
+  body {
+    background-color: #0E1217;
+    color: #F1F5F9;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+}
+
+/* Studio dark gunmetal ambient backdrop */
+.studio-backdrop {
+  background:
+    radial-gradient(circle at 50% 24%, rgba(125, 211, 252, 0.11) 0%, transparent 52%),
+    radial-gradient(circle at 50% 75%, rgba(148, 163, 184, 0.08) 0%, transparent 55%),
+    linear-gradient(180deg, #151A22 0%, #0B0E13 100%);
+}
+
+/* Subtle brushed metallic micro-texture */
+.brushed-chrome {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.04) 0px,
+      rgba(255, 255, 255, 0.04) 1px,
+      rgba(15, 23, 42, 0.03) 1px,
+      rgba(15, 23, 42, 0.03) 3px
+    ),
+    linear-gradient(
+      145deg,
+      #F8FAFC 0%,
+      #CBD5E1 16%,
+      #FFFFFF 32%,
+      #94A3B8 52%,
+      #E2E8F0 72%,
+      #64748B 92%,
+      #CBD5E1 100%
+    );
+  box-shadow:
+    0 32px 64px -16px rgba(0, 0, 0, 0.78),
+    0 12px 24px -8px rgba(0, 0, 0, 0.55),
+    inset 0 2px 3px rgba(255, 255, 255, 0.95),
+    inset 0 -3px 6px rgba(30, 41, 59, 0.45);
+}
+
+.brushed-chrome-dark {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 0px,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    linear-gradient(160deg, #2B3340 0%, #191F28 50%, #11151C 100%);
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.22),
+    inset 0 -2px 5px rgba(0, 0, 0, 0.75);
+}
+
+/* Cylindrical mechanical hinge metallic shading */
+.console-hinge {
+  background: linear-gradient(
+    180deg,
+    #475569 0%,
+    #94A3B8 18%,
+    #F8FAFC 38%,
+    #CBD5E1 56%,
+    #475569 82%,
+    #1E293B 100%
+  );
+  box-shadow:
+    0 6px 14px rgba(0, 0, 0, 0.55),
+    inset 0 1px 1px rgba(255, 255, 255, 0.8),
+    inset 0 -2px 3px rgba(15, 23, 42, 0.65);
+}
+
+/* Deep black retro screen with subtle scanlines & glass reflection */
+.crt-screen {
+  background:
+    radial-gradient(circle at 50% 30%, #0E1726 0%, #06090F 72%, #030508 100%);
+  box-shadow:
+    inset 0 4px 14px rgba(0, 0, 0, 0.92),
+    inset 0 0 22px rgba(125, 211, 252, 0.07);
+  position: relative;
+}
+
+.crt-scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(125, 211, 252, 0.035) 50%, rgba(0, 0, 0, 0.28) 50%);
+  background-size: 100% 4px;
+  z-index: 30;
+}
+
+/* Chrome tactile physical button */
+.chrome-btn {
+  background: radial-gradient(circle at 32% 28%, #FFFFFF 0%, #E2E8F0 36%, #94A3B8 78%, #64748B 100%);
+  box-shadow:
+    0 4px 0 #334155,
+    0 6px 12px rgba(0, 0, 0, 0.48),
+    inset 0 1px 2px rgba(255, 255, 255, 0.95),
+    0 0 10px rgba(125, 211, 252, 0.16);
+  transition: transform 80ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 80ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chrome-btn:hover {
+  box-shadow:
+    0 4px 0 #334155,
+    0 6px 14px rgba(125, 211, 252, 0.28),
+    inset 0 1px 2px rgba(255, 255, 255, 1),
+    0 0 14px rgba(125, 211, 252, 0.32);
+}
+
+.chrome-btn:active,
+.chrome-btn.is-pressed {
+  transform: translateY(3px);
+  box-shadow:
+    0 1px 0 #334155,
+    0 2px 4px rgba(0, 0, 0, 0.45),
+    inset 0 1px 3px rgba(15, 23, 42, 0.35),
+    0 0 14px rgba(125, 211, 252, 0.45);
+}
+
+/* Holographic metallic SD sticker shimmer + sparkle sweep */
+@keyframes holo-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes sd-shimmer-sweep {
+  0% {
+    transform: translateX(-140%) rotate(25deg);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.75;
+  }
+  65% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translateX(220%) rotate(25deg);
+    opacity: 0;
+  }
+}
+
+@keyframes sd-glint-twinkle {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(0.65) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15) rotate(45deg);
+  }
+}
+
+.holo-sticker {
+  background: linear-gradient(
+    125deg,
+    #CBD5E1 0%,
+    #BAE6FD 22%,
+    #F8FAFC 42%,
+    #A5B4FC 60%,
+    #7DD3FC 78%,
+    #E2E8F0 100%
+  );
+  background-size: 220% 220%;
+  animation: holo-shift 4.2s ease-in-out infinite;
+}
+
+.sd-sparkle-sweep {
+  animation: sd-shimmer-sweep 2.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.sd-glint {
+  animation: sd-glint-twinkle 2.1s ease-in-out infinite;
+}
+
+/* Gentle float for uninserted SD card */
+@keyframes sd-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-7px) rotate(1.5deg);
+  }
+}
+
+.animate-sd-float {
+  animation: sd-float 3.4s ease-in-out infinite;
+}
+
+/* 3D Card flip utilities for reminder cards */
+.card-flip-perspective {
+  perspective: 1100px;
+}
+
+.card-flip-inner {
+  transform-style: preserve-3d;
+  transition: transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card-flip-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.card-flip-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.card-flip-back {
+  transform: rotateY(180deg);
+}
+
+/* Glowing pixel heart pulse */
+@keyframes pixel-heart-beat {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 8px rgba(125, 211, 252, 0.6));
+  }
+  45% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 18px rgba(186, 230, 253, 0.95));
+  }
+}
+
+.animate-heart-pulse {
+  animation: pixel-heart-beat 1.7s ease-in-out infinite;
+}
+
+/* Subtle metallic corner screw */
+.chrome-screw {
+  background: radial-gradient(circle at 35% 35%, #F8FAFC 0%, #94A3B8 60%, #475569 100%);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8), 0 1px 2px rgba(0, 0, 0, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .holo-sticker,
+  .animate-sd-float,
+  .animate-heart-pulse {
+    animation: none !important;
+  }
+}

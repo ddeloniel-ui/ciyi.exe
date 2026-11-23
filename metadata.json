@@ -1,0 +1,6 @@
+{
+  "name": "A Little Call for Bebe",
+  "description": "A nostalgic 90s retro interactive phone call and encouraging message experience made just for Bebe.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
